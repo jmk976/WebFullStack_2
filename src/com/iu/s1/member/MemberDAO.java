@@ -29,15 +29,15 @@ public class MemberDAO {
 		
 		PreparedStatement st = con.prepareStatement(sql); 
 		
-		st.setString(1, memberDTO.getID());
-		st.setString(2, memberDTO.getPW());
+		st.setString(1, memberDTO.getId());
+		st.setString(2, memberDTO.getPw());
 		
 		ResultSet rs = st.executeQuery();
 		
 		if(rs.next()) {
-			memberDTO.setNAME(rs.getString("NAME"));
-			memberDTO.setEMAIL(rs.getString("EMAIL"));
-			memberDTO.setPHONE(rs.getString("PHONE"));
+			memberDTO.setName(rs.getString("name"));
+			memberDTO.setEmail(rs.getString("email"));
+			memberDTO.setPhone(rs.getString("phone"));
 		} else {
 			
 			memberDTO = null;

@@ -1,6 +1,8 @@
 package com.iu.s1.member;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,32 +28,36 @@ public class MemberController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
+		System.out.println("Member Controller!!!");
 		
-		System.out.println("ID: "+id);
-		System.out.println("PW: "+pw);
+		String path= request.getServletPath();
+		String uri = request.getRequestURI();
+		System.out.println(path);
+		System.out.println(uri);
+	    String result ="";
 		
-		MemberDAO memberDAO = new MemberDAO();
-		MemberDTO memberDTO = new MemberDTO();
-		memberDTO.setID(id);
-		memberDTO.setPW(pw);
-		
-		try {
-			memberDAO.login(memberDTO);
-			
-			if(memberDTO != null) {
-				System.out.println("로그인 성공");
-				
-			} else {
-				System.out.println("로그인 실패");
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		//subString 으로 마지막 주소 
+		//1. 자를려고 하는 시작 인덱스 번호찾기
+		//2. 해당 인덱스부터 잘라오기
+		int index = uri.lastIndexOf("/");
+		result= uri.substring(index+1);
+		System.out.println(result);
+		String pathInfo="";
+		if(result.equals("memberLogin.do")) {
+			System.out.println("로그인 처리");
+			pathInfo="../WEB-INF/member/memberLogin.jsp";
+		}else if(result.equals("memberJoin.do")) {
+			System.out.println("회원가입 처리");
+			pathInfo="../WEB-INF/member/memberJoin.jsp";
+		}else {
+			System.out.println("그 외  다른 처리");
 		}
-		System.out.println("MemberController!!!!");
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		//forward
+		RequestDispatcher view = request.getRequestDispatcher(pathInfo);
+		view.forward(request, response);
+		
+		
 	}
 
 	/**

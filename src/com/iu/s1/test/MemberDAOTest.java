@@ -12,8 +12,8 @@ public class MemberDAOTest {
 		MemberDAO memberDAO =new MemberDAO();
 		
 		MemberDTO memberDTO = new MemberDTO();
-		memberDTO.setID("iu");
-		memberDTO.setPW("pw1");
+		memberDTO.setId("iu");
+		memberDTO.setPw("pw1");
 		
 		try {
 			memberDTO=memberDAO.login(memberDTO);

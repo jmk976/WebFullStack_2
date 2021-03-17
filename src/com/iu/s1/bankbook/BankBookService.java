@@ -18,12 +18,16 @@ public class BankBookService {
 	
 	public ActionForward setWrite(HttpServletRequest request) throws Exception{
 		ActionForward actionForward = new ActionForward();
-		String method = request.getMethod();
 		
+	     
+		System.out.println("set Write");
+		
+		//GET
 		actionForward.setPath("../WEB-INF/bankbook/bankbookWrite.jsp");
 		actionForward.setCheck(true);
 		
-		if(method.toUpperCase().equals("POST")) {
+		if(request.getMethod().toUpperCase().equals("POST")) {
+			System.out.println(request.getParameter("bookname"));
 			BankBookDTO bankBookDTO = new BankBookDTO();
 			
 			bankBookDTO.setBookname(request.getParameter("bookname"));
@@ -31,8 +35,9 @@ public class BankBookService {
 			bankBookDTO.setBooksale(request.getParameter("booksale"));
 			
 			 int result= bankBookDAO.setWrite(bankBookDTO);
-			 
-			 actionForward.setPath(".../WEB-INF/bankbook/bankbooklist.jsp");
+			 System.out.println(result);
+			 //DAO
+			 actionForward.setPath("./bankbooklist.do");
 			 actionForward.setCheck(false);
 			 
 			

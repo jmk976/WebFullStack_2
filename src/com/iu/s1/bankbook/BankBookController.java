@@ -43,10 +43,15 @@ public class BankBookController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//MemberController 참조 해서 완성
 		
+		//한글 Encoding 처리 모든 Controller에 다 작성
+				request.setCharacterEncoding("UTF-8");
+				response.setCharacterEncoding("UTF-8");
+		
 		
 		
 		System.out.println("Bank Controller!");
 		String uri=request.getRequestURI();
+		System.out.println(uri);
 		int index = uri.lastIndexOf("/");
 		uri = uri.substring(index+1);
 		System.out.println(uri);
@@ -59,7 +64,7 @@ public class BankBookController extends HttpServlet {
 		
 			
 			try {
-				if(uri.equals("bankbookList.do")) {
+				if(uri.equals("bankbooklist.do")) {
 				actionForward = bankBookService.getList(request);
 				} else if(uri.equals("bankbookSelect.do")) {
 				actionForward = bankBookService.getSelect(request);
@@ -70,6 +75,7 @@ public class BankBookController extends HttpServlet {
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
+				System.out.println("error!!!");
 				e.printStackTrace();
 			}
 			

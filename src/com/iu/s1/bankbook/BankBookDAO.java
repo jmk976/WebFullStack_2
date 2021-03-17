@@ -21,7 +21,7 @@ public int setWrite(BankBookDTO bankBookDTO) throws Exception{
 	
 	Connection con = DriverManager.getConnection(url, user, password);
 	
-	String sql = "insert into bankbook(booknumber, bookname, bookrate, booksale) values(bank_seq.nextval, '?', ?, '?') ";
+	String sql = "insert into bankbook(booknumber, bookname, bookrate, booksale) values(bank_seq.nextval, ?, ?, ?)";
 	
 	PreparedStatement st = con.prepareStatement(sql);
 	

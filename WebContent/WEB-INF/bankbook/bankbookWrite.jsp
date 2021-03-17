@@ -30,7 +30,7 @@
 	          <li><a href="#">Page 1-3</a></li>
 	        </ul>
 	      </li>
-	     <li><a href="./bankbook/bankbookList.do">BankBook</a></li>
+	     <li><a href="./bankbook/bankbooklist.do">BankBook</a></li>
 	    </ul>
 	    <ul class="nav navbar-nav navbar-right">
 	      <li><a href="./member/memberJoin.jsp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -48,26 +48,30 @@
 			    
 			      
 			      <div class="form-group">
-			      <label class="control-label col-sm-2" for="bankname">Bank Name:</label>
+			      <label class="control-label col-sm-2" for="bookname">Book Name:</label>
 			      <div class="col-sm-10">          
-			        <input type="text" class="form-control" id="bankname" placeholder="Enter bankname" name="bankname">
+			        <input type="text" class="form-control" id="bookname" placeholder="Enter bookname" name="bookname">
 			      </div>
 			    </div>
 			    
 			    <div class="form-group">
-			      <label class="control-label col-sm-2" for="bankrate">Bank Rate:</label>
+			      <label class="control-label col-sm-2" for="bookrate">Book Rate:</label>
 			      <div class="col-sm-10">          
-			        <input type="text" class="form-control" id="bankrate" placeholder="Enter bankrate" name="bankrate">
+			        <input type="text" class="form-control" id="bookrate" placeholder="Enter bookrate" name="bookrate">
 			      </div>
 			    </div>
+			    
 			    
 			    
 			    <div class="form-group">
-			      <label class="control-label col-sm-2" for="banksale">Bank Sale:</label>
-			      <div class="col-sm-10">          
-			        <input type="text" class="form-control" id="banksale" placeholder="Enter banksale" name="banksale">
-			      </div>
-			    </div>
+				  <label for="booksale">Book sale:</label>
+				  <select class="form-control" id="booksale" name="booksale">
+				    <option>Y</option>
+				    <option>N</option>
+				    
+				  </select>
+				</div>
+			      
 			    
 			    
 			    

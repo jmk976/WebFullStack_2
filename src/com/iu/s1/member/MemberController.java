@@ -9,12 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.iu.s1.util.ActionForward;
+
 /**
  * Servlet implementation class MemberController
  */
 @WebServlet("/MemberController")
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private MemberService memberService;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -22,6 +26,13 @@ public class MemberController extends HttpServlet {
     public MemberController() {
         super();
         // TODO Auto-generated constructor stub
+    }
+    
+    @Override
+    public void init() throws ServletException {
+    	memberService = new MemberService();
+    	MemberDAO memberDAO = new MemberDAO();
+    	memberService.setMemberDAO(memberDAO);
     }
 
 	/**
@@ -43,19 +54,45 @@ public class MemberController extends HttpServlet {
 		result= uri.substring(index+1);
 		System.out.println(result);
 		String pathInfo="";
+		
+		ActionForward actionForward=null;
+		
 		if(result.equals("memberLogin.do")) {
 			System.out.println("로그인 처리");
-			pathInfo="../WEB-INF/member/memberLogin.jsp";
+			try {
+				actionForward = memberService.memberLogin(request);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				System.out.println("에러발생");
+				e.printStackTrace();
+			}
+//			pathInfo="../WEB-INF/member/memberLogin.jsp";
 		}else if(result.equals("memberJoin.do")) {
-			System.out.println("회원가입 처리");
-			pathInfo="../WEB-INF/member/memberJoin.jsp";
+			
+			try {
+				actionForward = memberService.memberJoin(request);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				System.out.println("에러발생");
+				e.printStackTrace();
+			}
+			
 		}else {
-			System.out.println("그 외  다른 처리");
+			System.out.println("그 외 다른 처리");
 		}
 		
+		
+		
 		//forward
-		RequestDispatcher view = request.getRequestDispatcher(pathInfo);
+		if(actionForward.isCheck()) {
+		RequestDispatcher view = request.getRequestDispatcher(actionForward.getPath());
 		view.forward(request, response);
+		}else {
+		//redirect
+			response.sendRedirect(actionForward.getPath());
+			
+			
+		}
 		
 		
 	}

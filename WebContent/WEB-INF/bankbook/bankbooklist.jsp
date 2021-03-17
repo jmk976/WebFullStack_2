@@ -1,5 +1,12 @@
+<%@page import="com.iu.s1.bankbook.BankBookDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+     <%
+   List<BankBookDTO> ar = (List<BankBookDTO>)request.getAttribute("list");
+    
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,8 +21,10 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
+</head>
 <body>
-		<nav class="navbar navbar-inverse">
+
+<nav class="navbar navbar-inverse">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
 	      <a class="navbar-brand" href="#">WebSiteName</a>
@@ -29,7 +38,7 @@
 	          <li><a href="#">Page 1-3</a></li>
 	        </ul>
 	      </li>
-	      <li><a href="#">Page 2</a></li>
+	      <li><a href="./bankbook/bankbookList.do">BankBook</a></li>
 	    </ul>
 	    <ul class="nav navbar-nav navbar-right">
 	      <li><a href="./member/memberJoin.do"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -38,11 +47,39 @@
 	  </div>
 	</nav>
 	  
-	<div class="container">
-	  <h3>Right Aligned Navbar</h3>
-	  <p>The .navbar-right class is used to right-align navigation bar buttons.</p>
-	</div>
-			
-	
+	  
+	 <div class="container">
+	   <div class="row">
+	       <h1> BankBook List</h1>
+	       
+	       <table class="table table-hover">
+	       	<thead>
+	       		<tr> 
+	       			<th>Name</th>
+	       			<th>Rate</th>
+	       			<th>Sale</th>
+	       		</tr>
+	       	</thead>
+	       	
+	       	
+	       	<tbody>
+	       	<% for(int i=0;i<ar.size();i++){ %>
+	       		<tr>
+	       			<td><a href="./bankbookSelect.do?booknumber=<%= ar.get(i).getBooknumber()%>"><%=ar.get(i).getBookname() %></a></td>
+	       			<td><%=ar.get(i).getBookrate() %></td>
+	       			<td><%=ar.get(i).getBooksale() %></td>
+	       		</tr>
+	       		
+	      	<% } %>
+	       	</tbody>
+	       </table>
+	       
+	       
+	       <a href ="./bankbookWrite.do" class="btn btn-danger">WRITE</a>
+	       
+	       
+	    </div>
+	  </div>
+
 </body>
 </html>

@@ -42,7 +42,7 @@
 	  <div class="container">
 	  	<div class="row">
 			<h1> Member Join Page</h1>
-			 <form class="form-horizontal" action="/action_page.php">
+			 <form class="form-horizontal" action="./memberJoin.do" method="post">
 			    
 			    <div class="form-group">
 			      <label class="control-label col-sm-2" for="id">ID:</label>
@@ -51,6 +51,29 @@
 			      	</div>
 			      </div>
 			      
+			      <div class="form-group">
+			      <label class="control-label col-sm-2" for="pw">Password:</label>
+			      <div class="col-sm-10">          
+			        <input type="password" class="form-control" id="pw" placeholder="Enter password" name="pw">
+			      </div>
+			    </div>
+			    
+			    <div class="form-group">
+			      <label class="control-label col-sm-2" for="name">Name:</label>
+			      <div class="col-sm-10">          
+			        <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
+			      </div>
+			    </div>
+			    
+			    
+			    <div class="form-group">
+			      <label class="control-label col-sm-2" for="phone">Phone:</label>
+			      <div class="col-sm-10">          
+			        <input type="text" class="form-control" id="phone" placeholder="Enter phone" name="phone">
+			      </div>
+			    </div>
+			    
+			      
 			     <div class="form-group">
 			      <label class="control-label col-sm-2" for="email">Email:</label>
 			      <div class="col-sm-10">
@@ -58,12 +81,7 @@
 			      </div>
 			    </div>
 			    
-			    <div class="form-group">
-			      <label class="control-label col-sm-2" for="pw">Password:</label>
-			      <div class="col-sm-10">          
-			        <input type="password" class="form-control" id="pw" placeholder="Enter password" name="pw">
-			      </div>
-			    </div>
+			    
 			    
 			    
 			    
